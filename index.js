@@ -10,18 +10,17 @@ const overlayImage = document.getElementById('overlayImage');
 const prevImageButton = document.getElementById('prevImage');
 const nextImageButton = document.getElementById('nextImage');
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            observer.unobserve(img);
-        }
-    });
-}, {rootMargin: '0px 0px 200px 0px'}); // Start loading images 200px before they're in view
-
 window.onload = function() {
     displayImages();
+    document.addEventListener('keydown', function(event) {
+        if (overlay.style.display === 'flex') {
+            if (event.key === 'ArrowRight' && currentImage < images.length - 1) {
+                changeImage(1);
+            } else if (event.key === 'ArrowLeft' && currentImage > 0) {
+                changeImage(-1);
+            }
+        }
+    });
 };
 
 function displayImages() {
@@ -39,13 +38,12 @@ function displayImages() {
         for (let j = i; j < i + 5 && j < imagesOnPage.length; j++) {
             const cell = document.createElement('td');
             const img = document.createElement('img');
-            img.dataset.src = 'Pictures/CatsDogs/' + imagesOnPage[j];
+            img.src = 'Pictures/CatsDogs/' + imagesOnPage[j];
             img.onclick = function() {
-                showOverlay(this.dataset.src);
+                showOverlay(this.src);
             };
             cell.appendChild(img);
             row.appendChild(cell);
-            observer.observe(img);
         }
         imageTable.appendChild(row);
     }
