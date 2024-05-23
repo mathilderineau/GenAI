@@ -10,6 +10,16 @@ const overlayImage = document.getElementById('overlayImage');
 const prevImageButton = document.getElementById('prevImage');
 const nextImageButton = document.getElementById('nextImage');
 
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+        }
+    });
+}, {rootMargin: '0px 0px 200px 0px'}); // Start loading images 200px before they're in view
+
 window.onload = function() {
     displayImages();
 };
@@ -29,12 +39,13 @@ function displayImages() {
         for (let j = i; j < i + 5 && j < imagesOnPage.length; j++) {
             const cell = document.createElement('td');
             const img = document.createElement('img');
-            img.src = 'Pictures/CatsDogs/' + imagesOnPage[j];
+            img.dataset.src = 'Pictures/CatsDogs/' + imagesOnPage[j];
             img.onclick = function() {
-                showOverlay(this.src);
+                showOverlay(this.dataset.src);
             };
             cell.appendChild(img);
             row.appendChild(cell);
+            observer.observe(img);
         }
         imageTable.appendChild(row);
     }
