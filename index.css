@@ -8,6 +8,7 @@
     display: none;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 #overlayImage {
@@ -15,6 +16,11 @@
     max-height: 600px;
     width: auto;
     height: auto;
+}
+
+#prevImage,
+#nextImage {
+    margin-top: 20px;
 }
 
 #gallery {
@@ -36,8 +42,14 @@
 }
 
 #prevPage,
-#nextPage,
-#prevImage,
-#nextImage {
+#nextPage {
     margin-top: 20px;
+}
+
+#ban {
+    /* max-width: 200px;
+    max-height: 200px; */
+    width: 1500px;
+    height: auto;
+
 }
