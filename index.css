@@ -1,0 +1,43 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#overlayImage {
+    max-width: 600px;
+    max-height: 600px;
+    width: auto;
+    height: auto;
+}
+
+#gallery {
+    width: 80%;
+    margin: auto;
+}
+
+#imageTable {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#imageTable img {
+    max-width: 200px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+#prevPage,
+#nextPage,
+#prevImage,
+#nextImage {
+    margin-top: 20px;
+}
